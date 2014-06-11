@@ -10,10 +10,24 @@ var runCount = 0;
 var runLoop = null;
 var loopSpeed = 100;
 
+function getStorage (key) {
+  return window.localStorage ? window.localStorage[key] : null;
+}
+
+function putStorage (key, value) {
+  if (window.localStorage) {
+    window.localStorage[key] = value;
+  }
+}
+
 function findChooseActionFunctions ()
 {
     var champSelect = document.getElementById("champFunc");
     var enemySelect = document.getElementById("enemyFunc");
+
+    var champFunc = getStorage("champFunc");
+    var enemyFunc = getStorage("enemyFunc");
+
     for (func in window)
     {
         var funcName = func.toString();
@@ -24,6 +38,10 @@ function findChooseActionFunctions ()
             var enemyOption = document.createElement("option");
             champOption.text = enemyOption.text = funcName.replace("chooseAction", "");
             champOption.value = enemyOption.value = funcName;
+            if (champFunc === funcName)
+                champOption.selected = true;
+            if (enemyFunc === funcName)
+                enemyOption.selected = true;
             champSelect.add(champOption);
             enemySelect.add(enemyOption);
         }
@@ -36,6 +54,8 @@ function AssignChampFunc(func)
         champ.chooseAction = func;
     else
         champ.chooseAction = window[func];
+
+    putStorage("champFunc", champ.chooseAction.name);
 }
 
 function AssignEnemyFunc(func)
@@ -44,6 +64,8 @@ function AssignEnemyFunc(func)
         enemy.chooseAction = func;
     else
         enemy.chooseAction = window[func];
+
+    putStorage("enemyFunc", enemy.chooseAction.name);
 }
 
 function start() {
