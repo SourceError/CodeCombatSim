@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="vector.js"></script>
+<script src="things.js"></script>
+<script src="draw.js"></script>
+<script src="basicActions.js"></script>
+<script src="actions.js"></script>
+<script src="main.js"></script>
+</head>
+
+<body onLoad="start();">
+
+<div style="position:absolute; left:1180px; top:10px">
+<button style="height: 40px; width: 100px" type="button" onClick="stopLoop();">Stop</button><br>
+<button style="height: 40px; width: 100px" type="button" onClick="run();">Step</button><br>
+<button style="height: 40px; width: 100px" type="button" onClick="startLoop(200);">Slow</button><br>
+<button style="height: 40px; width: 100px" type="button" onClick="startLoop(100);">Normal</button><br>
+<button style="height: 40px; width: 100px" type="button" onClick="startLoop(50);">2x</button><br>
+<button style="height: 40px; width: 100px" type="button" onClick="startLoop(10);">10x</button><br>
+<button style="height: 40px; width: 100px" type="button" onClick="startLoop(1);">100x</button><br>
+<br>
+<br>
+<br>
+<br>
+<b>Player:</b>
+<br>
+<select id="champFunc" onChange="AssignChampFunc(this.value);"></select>
+<br>
+<b>Enemy:</b>
+<br>
+<select id="enemyFunc" onChange="AssignEnemyFunc(this.value);"/></select>
+<br>
+<br>
+<button style="height: 40px; width: 100px" type="button" onClick="restartAll();">Restart</button><br>
+
+</div>
+
+<canvas id="playArea" width="1160" height="700"
+style="border:1px solid #000000;">
+</canvas>
+
+
+</body>
+</html>
